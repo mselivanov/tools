@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # COMPOSER_ENVIRONMENT - Google Cloud Composer environment name
 # COMPOSER_LOCATION - Composer location, e.g. europe-west1
 # START_DATE - backfill start date in YYYY-MM-DD format

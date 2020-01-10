@@ -5,4 +5,4 @@
 # END_DATE - backfill end date in YYYY-MM-DD format
 # DAG_ID - dag id
 
-gcloud composer environments run ${COMPOSER_ENVIRONMENT} --location ${COMPOSER_LOCATION} clear -- -s ${START_DATE} -e ${END_DATE} ${DAG_ID}
+gcloud composer environments run ${COMPOSER_ENVIRONMENT} --location ${COMPOSER_LOCATION} clear -- -s ${START_DATE} -e ${END_DATE} --upstream --downstream -c ${DAG_ID}

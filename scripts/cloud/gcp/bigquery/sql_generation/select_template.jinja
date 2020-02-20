@@ -1,0 +1,9 @@
+select 
+{%- for column in params.columns: -%}
+{% if loop.index0 !=0 -%}
+,{{ column -}}
+{% else %}
+{{ column -}}
+{%- endif %}
+{% endfor -%}
+from `{{ params.project_id}}`.{{ params.dataset_id }}.{{ params.table_id }}

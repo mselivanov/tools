@@ -1,0 +1,1 @@
+{"@type": "MessageCard", "@context": "http://schema.org/extensions","themeColor": "ff0000", "sections": [{"activityTitle": "Title", "activitySubtitle": "Subtitle", "markdown": true,"potentialAction": [{"@type": "OpenUri","name": "google","targets": [{"os": "default", "uri": "https://www.google.com" }]}]}]}

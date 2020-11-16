@@ -1,0 +1,2 @@
+Find: (^\s+)(sum\(|avg\()?(\w+)(\))?(\s+as\s+)?(\w+)?(,?$)
+Replace with: \1\2<replace with alias>\3\4\5\6\7

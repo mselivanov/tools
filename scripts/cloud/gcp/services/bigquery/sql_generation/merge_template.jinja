@@ -1,0 +1,37 @@
+merge into {{params.dataset_id}}.{{params.table_id}} tgt
+using (
+{{params.indent}}select
+{% for column in params.columns: -%}
+{% if loop.index0+1 < loop.length -%}
+{{ params.indent }}{{ params.indent }}{{ column }}{{ ',' }}
+{% else -%}
+{{ params.indent }}{{ params.indent }}{{ column }}
+{% endif -%}
+{% endfor -%}
+{{ params.indent }}{{ params.indent }}from {{ params.dataset_id }}.{{ params.table_id }}
+) src on 
+{% for column in params.columns: -%}
+{% if loop.index0+1 < loop.length -%}
+{{ params.indent }}src.{{ column }}=tgt.{{ column }}{{ ' and' }}
+{% else -%}
+{{ params.indent }}src.{{ column }}=tgt.{{ column }}
+{% endif -%}
+{% endfor -%}
+when matched then update set
+{% for column in params.columns: -%}
+{% if loop.index0+1 < loop.length -%}
+{{ params.indent }}tgt.{{ column }}=src.{{ column }}{{ ',' }}
+{% else -%}
+{{ params.indent }}tgt.{{ column }}=src.{{ column }}
+{% endif -%}
+{% endfor -%}
+when not matched then insert (
+{% for column in params.columns: -%}
+{% if loop.index0+1 < loop.length -%}
+{{ params.indent }}{{ column }}{{ ',' }}
+{% else -%}
+{{ params.indent }}{{ column }}
+{% endif -%}
+{% endfor -%}
+)
+row

@@ -17,3 +17,6 @@
 # ${f##*.}: parameter substitution, remove the longest part matching the pattern from the front end of a variable; any symbol till the last dot 
 
 find . -maxdepth 1 -type f -regextype posix-extended -regex '.*\.txt|.*\.json' -exec bash -c 'for f in "$@"; do f=${f#./}; mv "$f" "./${f%.*}_newpostfix.${f##*.}"; done' None {} +
+
+# Copies files and changes prefix
+find . -maxdepth 1 -type f -regextype posix-extended -regex '.*\.json' -exec bash -c 'for f in "$@"; do f=${f#./}; cp "$f" "./stg_${f#raw_}"; done' None {} +

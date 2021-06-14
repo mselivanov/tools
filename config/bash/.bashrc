@@ -1,4 +1,18 @@
 #!/bin/bash
+# Env vars
+export DKPI_VENV_ROOT=/c/venv/dkpi/
+export REPOSITORY_ROOT=/c/repo
+export GCLOUD_SDK_ROOT=/c/Programs/Google/Cloud\ SDK/google-cloud-sdk/
+export CLOUDSDK_PYTHON=${GCLOUD_SDK_ROOT}/platform/bundledpython/python.exe
+
+# Set up ssh keys
+if [[ -z "$(ps -ef | grep ssh-agent)" ]];
+then
+  eval "$(ssh-agent -s)"
+fi
+ssh-add ~/.ssh/id_ed25519 
+ssh-add ~/.ssh/id_ed25519_2
+
 # Common commands
 alias q='exit'
 alias c='clear'
@@ -40,14 +54,16 @@ alias gbls='git branch -vv'
 
 # Python Commands
 alias pws='python -m http.server 8000'
-alias pactd='source /c/venvs/digitalkpi/Scripts/activate'
 
 # Google Cloud COmmands
 alias bq='bq.cmd'
 
 # Project DKPI aliases
-export PRJ_DKPI_ROOT='/c/repo/bayc-alec'
+export PRJ_DKPI_ROOT="${REPOSITORY_ROOT}/bayc-alec"
 alias cddk='cd ${PRJ_DKPI_ROOT}'
 alias dktest='${PRJ_DKPI_ROOT}/build/build.sh unittests'
 alias dkcov='${PRJ_DKPI_ROOT}/build/build.sh coverage'
 alias dkbuild='${PRJ_DKPI_ROOT}/build/build.sh build'
+alias dkenv="source ${DKPI_VENV_ROOT}/Scripts/activate"
+alias dkroot="cd ${PRJ_DKPI_ROOT}"
+alias dkchg="cd ${PRJ_DKPI_ROOT}/dags/schema/changelog/"

@@ -1,4 +1,4 @@
-requests==2.21.0
+requests==2.31.0
 google-cloud-storage==1.13.2
 google-cloud-bigquery==1.11.2
 google-cloud-logging==1.9.1
